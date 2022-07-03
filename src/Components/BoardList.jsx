@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { BoardContext } from "../context/Board";
+//component
 import BoardItem from "./BoardItem";
+//context
+import { BoardContext } from "../context/Board";
 
 const BoardList = () => {
   const { boards } = useContext(BoardContext);

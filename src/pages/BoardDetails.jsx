@@ -1,19 +1,21 @@
 import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-
+//components
 import AddItem from "../Components/AddItem";
 import AddItemForm from "../Components/AddItemForm";
 import TaskList from "../Components/TaskList";
-
+//context
 import { BoardContext } from "../context/Board";
 // import { TaskContext } from "../context/Task";
 import { TaskListContext } from "../context/TaskList";
+//action
 import { ADD_LIST_ID_TO_BOARD, CREATE_LIST } from "../utils/constants";
 
 const BoardDetails = () => {
   const [listTitle, setListTitle] = useState("");
   const [editMode, setEditMode] = useState(false);
+  //getting id as string
   const { boardId } = useParams();
 
   const { taskLists, dispatchTaskList } = useContext(TaskListContext);
@@ -24,14 +26,14 @@ const BoardDetails = () => {
     const id = Date.now();
     dispatchTaskList({
       type: CREATE_LIST,
-      payload: { id: id, boardId: boardId, title: listTitle },
+      payload: { id: id, boardId: parseInt(boardId), title: listTitle },
     });
+    setListTitle("");
     dispatchBoard({
       type: ADD_LIST_ID_TO_BOARD,
-      payload: { id: boardId, taskListId: id },
+      payload: { id: parseInt(boardId), taskListId: id },
     });
 
-    setListTitle("");
     setEditMode(false);
   };
   return (
@@ -44,11 +46,11 @@ const BoardDetails = () => {
           display: "flex",
           gap: "20px",
           flexWrap: "wrap",
-          height: "100%",
+          height: "100vh",
         }}
       >
         {taskLists
-          ?.filter((item) => item.boardId === boardId)
+          ?.filter((item) => item.boardId === parseInt(boardId))
           ?.map((taskList) => (
             <TaskList taskList={taskList} key={taskList.id} />
           ))}

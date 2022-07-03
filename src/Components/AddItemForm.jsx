@@ -23,7 +23,7 @@ const AddItemForm = ({
           autoFocus
           cols="25"
           rows="2"
-          placeholder="Enter the title"
+          placeholder={`Enter the ${hint}`}
           value={title}
           onChange={onChangeHandler}
         />

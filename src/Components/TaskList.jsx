@@ -95,9 +95,9 @@ const TaskList = ({ taskList }) => {
 
 export default TaskList;
 const ListContainer = styled.div`
+  min-height: 180px;
   display: flex;
   flex-direction: column;
-  height: 180px;
   color: #000;
   background-color: #96bbeb;
   border: 1px solid rgba(206, 255, 214, 0.7);

@@ -7,7 +7,7 @@ import {
   UPDATE_LIST,
 } from "../utils/constants";
 
-export const taskListReducer = (taskLists = [], action) => {
+export const taskListReducer = (taskLists, action) => {
   switch (action.type) {
     case CREATE_LIST: {
       const taskList = {
@@ -16,6 +16,7 @@ export const taskListReducer = (taskLists = [], action) => {
         tasks: [],
         boardId: action.payload.boardId,
       };
+      console.log(taskList);
       return [...taskLists, taskList];
     }
     case UPDATE_LIST: {

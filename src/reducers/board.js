@@ -20,8 +20,10 @@ export const BoardReducer = (boards, action) => {
         tasks: [],
         createdAt: new Date().toLocaleDateString(),
       };
+      console.log(board);
       return [...boards, board];
     }
+
     // case EDIT_BOARD: {
     // }
     case UPDATE_BOARD: {

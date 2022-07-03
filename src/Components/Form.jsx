@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
+//context
 import { BoardContext } from "../context/Board";
+//action
 import { CREATE_BOARD } from "../utils/constants";
 
 const Form = () => {
   const [boardTitle, setBoardTitle] = useState("");
+  const [error, setError] = useState("");
   const { dispatchBoard } = useContext(BoardContext);
 
   const submitHandler = (e) => {
@@ -12,23 +15,25 @@ const Form = () => {
     if (boardTitle) {
       dispatchBoard({ type: CREATE_BOARD, payload: { title: boardTitle } });
       setBoardTitle("");
+      setError("");
     } else {
-      alert("Please Provide a Board Name");
+      setError("Please provide a board name!");
     }
   };
   return (
     <FormContainer>
-      <form onSubmit={submitHandler}>
+      <FormField onSubmit={submitHandler}>
         <Input
           type="text"
           name="boardTitle"
           value={boardTitle}
           onChange={(e) => setBoardTitle(e.target.value)}
         />
+        <Small>{error}</Small>
         <Button type="submit" onClick={submitHandler}>
           Create Board
         </Button>
-      </form>
+      </FormField>
     </FormContainer>
   );
 };
@@ -52,8 +57,18 @@ const Button = styled.button`
   transition: 0.3s all ease;
   border: 1px solid #aad3d6;
   border-radius: 0 5px 5px 0;
+  cursor: pointer;
   &:hover {
     color: #fff;
     background-color: rgba(0, 0, 0, 0.2);
   }
+`;
+const FormField = styled.form`
+  position: relative;
+`;
+const Small = styled.small`
+  position: absolute;
+  left: 5px;
+  bottom: -20px;
+  color: #ffffff;
 `;

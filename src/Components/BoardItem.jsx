@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
+//context
 import { BoardContext } from "../context/Board";
 import { TaskListContext } from "../context/TaskList";
 import { TaskContext } from "../context/Task";
+//action
 import { DELETE_BOARD, DELETE_LIST, DELETE_TASK } from "../utils/constants";
 import styled from "styled-components";
 
